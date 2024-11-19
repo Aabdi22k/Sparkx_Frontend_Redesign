@@ -243,18 +243,21 @@ export default function Home() {
               <DialogHeader>
                 <DialogTitle>Add New User</DialogTitle>
               </DialogHeader>
-              <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
+              <div className="grid gap-4 w-full py-4">
+                <div className="flex items-center gap-6">
+                  <div className="flex flex-col w-[80%]">
+                  <label className="pl-2 dark:text-white text-black" htmlFor="username">Username</label>
                   <Input
                     id="username"
-                    placeholder="@username"
+                    placeholder="e.g. Example423$"
                     value={newUsername}
                     onChange={(e) => setNewUsername(e.target.value)}
                     className="col-span-3 dark:bg-black p-3 rounded-lg bg-white"
                   />
+                  </div>
                   <Button
                     onClick={handleAddUser}
-                    className="dark:bg-black dark:text-white text-black bg-white"
+                    className="dark:bg-black w-[20%] dark:text-white text-black bg-white"
                   >
                     Add
                   </Button>
@@ -298,7 +301,10 @@ export default function Home() {
               </AvatarFallback>
             </Avatar>
             {isSidebarOpen && (
-              <span className="pl-4 font-light">{authUser.fullname}</span>
+              <div className="flex flex-col text-left">
+                <span className="pl-4 text-xs text-gray-600 dark:text-gray-400 font-light">@{authUser.username}</span>
+                <span className="pl-4 font-light">{authUser.fullname}</span>
+              </div>
             )}
           </Button>
         </div>
@@ -324,8 +330,12 @@ export default function Home() {
             
             <div   className="  no-scrollbar  flex flex-col gap-4  h-full  overflow-y-auto  " >
             {messages?.length === 0 ? (
-              <div className="text-center text-gray-500">
-                Start The Conversation Now
+              <div className="text-center flex flex-col w-full h-full gap-2 items-center justify-center text-white">
+                <h3 className="text-2xl pb-4">Welcome to Sparkx Chat</h3>
+                <h6>To get started</h6>
+                <h6>1. Ask friends for their username</h6>
+                <h6>2. Click the plus icon on the sidebar and input their username</h6>
+                <h6>3. Spark a conversation</h6>
               </div>
             ) : (
               messages?.map((message) => (
